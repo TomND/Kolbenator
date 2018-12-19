@@ -5,6 +5,8 @@ import 'package:first_flutter/peopleDeets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:first_flutter/networkHelper.dart';
+import 'package:first_flutter/addPerson.dart';
+
 
 
 class People extends StatelessWidget {
@@ -17,8 +19,18 @@ class People extends StatelessWidget {
       body: Center(
         child: PeopleHomePage(),
       ),
+      floatingActionButton: new FloatingActionButton(
+        elevation: 4.0,
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddPerson()));
+        },
+      ),
     );
   }
+
+
 }
 
 class PeopleHomePage extends StatefulWidget {
