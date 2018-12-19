@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:first_flutter/peopleDeets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:first_flutter/networkHelper.dart';
+
 
 class People extends StatelessWidget {
   @override
@@ -28,7 +30,7 @@ class _PeoplePageState extends State<PeopleHomePage> {
   @override
   Widget build(BuildContext context) {
     var futureBuilder = new FutureBuilder(
-      future: fetchPeople("en"),
+      future: NetworkHelper.fetchData("en"),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
@@ -44,24 +46,6 @@ class _PeoplePageState extends State<PeopleHomePage> {
     );
 
     return futureBuilder;
-  }
-
-  Future<List<String>> fetchPeople(String locale) async {
-    final response = await http.get(
-        'https://trending-search.flippback.com/api/v1/suggestions?postal_code=m8x1a1&locale=' +
-            locale +
-            '&account_guid=b1eff4c2-bb8c-4cbd-88db-025f4b780d7f');
-
-    if (response.statusCode == 200) {
-      print(locale);
-
-      // If the call to the server was successful, parse the JSON
-      var suggestionsFromJson = json.decode(response.body)['suggestions'];
-      return new List<String>.from(suggestionsFromJson);
-    } else {
-      // If that call was not successful, throw an error.
-      throw Exception('Failed to load post');
-    }
   }
 
   Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
