@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:first_flutter/peopleDeets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -76,6 +77,12 @@ class _PeoplePageState extends State<PeopleHomePage> {
               ),
               onTap: () {
                 print('row $index was tapped with text ' + values[index]);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PeopleDeets(name: values[index])
+                    )
+                );
               },
             ),
             new Divider(
