@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:first_flutter/people.dart';
 import 'package:first_flutter/teams.dart';
-
+import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
@@ -47,19 +46,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -94,19 +80,37 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context) => People()));
-            },
-              child: new Text("Gangsters", style: new TextStyle(fontSize: 30,
-                  color: Colors.white)),
-              color: Colors.black,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: RaisedButton(
+                elevation: 8,
+                padding: EdgeInsets.all(16),
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(10)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => People()));
+                },
+                child: new Text("Gangsters",
+                    style: new TextStyle(fontSize: 30, color: Colors.white)),
+                color: Colors.black,
+              ),
             ),
-            RaisedButton(onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context) => Teams()));
-            },
-              child: new Text("Gangs", style: new TextStyle(fontSize: 30,
-                  color: Colors.white)),
-              color: Colors.green,
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: RaisedButton(
+                elevation: 8,
+                padding: EdgeInsets.all(16),
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(10)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Teams()));
+                },
+                child: new Text("Gangs",
+                    style: new TextStyle(fontSize: 30, color: Colors.white)),
+                color: Colors.green,
+              ),
             ),
           ],
         ),
@@ -114,7 +118,4 @@ class _MyHomePageState extends State<MyHomePage> {
 // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
-
-
 }
