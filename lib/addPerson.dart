@@ -2,10 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:first_flutter/peopleDeets.dart';
+import 'package:first_flutter/Person.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:first_flutter/networkHelper.dart';
 import 'package:first_flutter/verticalSlider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class AddPerson extends StatelessWidget {
   @override
@@ -30,8 +34,10 @@ class DataForm extends StatefulWidget{
 
 class _DataFormState extends State<DataForm> {
 
+  Person person;
+
   bool _formWasEdited = false;
-  String personName = "";
+  final personName = TextEditingController();
   var factFinderValue = 1;
   String fflabel = "1";
 
@@ -65,7 +71,7 @@ class _DataFormState extends State<DataForm> {
                 hintText: 'What do people call you?',
                 labelText: 'Name *',
               ),
-              onSaved: (String value) { personName = value; },
+              controller: personName,
               validator: _validateName,
             ),
 
@@ -190,6 +196,13 @@ class _DataFormState extends State<DataForm> {
                 ),
 
                 ),
+            ),
+            RaisedButton(
+              child: Text("Create"),
+              onPressed: () {
+                Navigator.pop(context);
+                createPerson();
+              },
             )
 
           ],
@@ -198,6 +211,18 @@ class _DataFormState extends State<DataForm> {
 
       ),
     );
+  }
+
+  void createPerson(){
+    Firestore.instance.collection('people').document()
+        .setData({
+      'name': personName.text,
+      'factfinder': factFinderValue,
+      'followthru': followThruValue,
+      'quickstart': quickStartValue,
+      'implementor': implementorValue,
+      'image': "https://i.kym-cdn.com/entries/icons/original/000/027/475/Screen_Shot_2018-10-25_at_11.02.15_AM.png"
+    });
   }
 
   String _validateName(String value) {
@@ -213,32 +238,5 @@ class _DataFormState extends State<DataForm> {
 }
 
 
-
-
-
-//
-//TextFormField formKolbeField(BuildContext context,TextInputType textInputType,){
-//  return TextFormField(
-//    keyboardType: textInputType,
-//    textInputAction: TextInputAction.next,
-//    validator: (value) {
-//      if (value.length < 0 || )
-//    },
-//
-//  )
-//}
-//
-//
-//
-//class AddPersonHomePage extends StatefulWidget {
-//  @override
-//  _AddPersonPageState createState() => new _AddPersonPageState();
-//}
-//
-//class _AddPersonPageState extends State<AddPersonHomePage> {
-//  @override
-//  Widget build(BuildContext context) {
-//
-//  }
 
 

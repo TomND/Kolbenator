@@ -1,6 +1,7 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:first_flutter/peopleDeets.dart';
 import 'package:flutter/material.dart';
@@ -24,4 +25,16 @@ class NetworkHelper {
       throw Exception('Failed to load post');
     }
   }
+
+//  static Widget fetchCloudData(){
+//    return StreamBuilder<QuerySnapshot>(
+//      stream: Firestore.instance.collection("people").snapshots(),
+//      builder: (context,snapshot){
+//        if (!snapshot.hasData) return LinearProgressIndicator();
+//
+//        return snapshot.data.documents;
+//      },
+//    )
+//  }
+
 }
