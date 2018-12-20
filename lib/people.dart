@@ -14,6 +14,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class People extends StatelessWidget {
+
+  static List<Person> allPeople = new List();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +99,9 @@ class _PeoplePageState extends State<PeopleHomePage> {
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot snapshot){
     final person = Person.fromSnapshot(snapshot);
-
+    if(person != null) {
+      People.allPeople.add(person);
+    }
     return Padding(
       key: ValueKey(person.name),
       padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 8.0),
