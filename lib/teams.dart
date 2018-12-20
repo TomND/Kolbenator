@@ -60,12 +60,13 @@ class _TeamsPageState extends State<TeamsHomePage> {
               ),
               onTap: () {
                 print('row $index was tapped with text ' + values[index]);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PeopleDeets(name: values[index])
-                    )
-                );
+//                Navigator.push(
+//                    context,
+//                    MaterialPageRoute(
+//                        builder: (context) => PeopleDeets(name: values[index])
+//                    )
+//                );TODO: commented out due to changes of how peopleDeets works
+                   // TODO: make a teamsDeets class
               },
             ),
             new Divider(

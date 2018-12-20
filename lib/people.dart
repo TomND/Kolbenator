@@ -108,7 +108,17 @@ class _PeoplePageState extends State<PeopleHomePage> {
         ),
         child: ListTile(
           title: Text(person.name),
-          trailing: Text(kolbeTrailingText(person)),
+          trailing: Column(
+            children: <Widget>[
+              Text(kolbeTrailingText(person)),
+//              Image.network(person.image,
+//              fit: BoxFit.scaleDown,) TODO: IMAGES
+            ],
+          ),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => PeopleDeets(person: person)));
+          },
         ),
       ),
     );
